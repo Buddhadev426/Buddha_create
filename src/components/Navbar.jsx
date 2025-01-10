@@ -25,10 +25,10 @@ const navbar = () => {
           </li>
           <li>
             <Link
-              to={"/Pricing"}
+              to={"/Services"}
               className="hover:underline hover:font-bold hover:cursor-pointer "
             >
-              Pricing
+              Services
             </Link>
           </li>
           <li>

@@ -7,6 +7,13 @@ import ScrollingEffect from './Main/ScrollingEffect'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import About from './Main/About'
+import FinfFriendHeader from './components/FinfFriendHeader'
+import Services from './Main/Services'
+import DataFlowProvider from './Context/Dataflow'
+import Contact from './Main/Contact'
+import Weather from './Main/Weather'
+
+
 
 
 
@@ -40,8 +47,36 @@ const App = () => {
       path: '/About',
       element: (
        <div>
+        <FinfFriendHeader />
        <About />
+       </div>
+      )
+    },
+    {
+      path: '/Services',
+      element: (
+       <div>
+       <Services>
+        <h1>Hi, this is services</h1>
+
+       </Services>
+       </div>
+      )
+    },
+    {
+      path: '/Contact',
+      element: (
+       <div>
+       <Contact />  
+       </div>
+      )
+    },
+    {
+      path: '/Weather',
+      element: (
+       <div>
         
+       <Weather/>
        </div>
       )
     },
@@ -50,7 +85,11 @@ const App = () => {
   ])
     return (
       <div>
+
+      <DataFlowProvider>
         <RouterProvider router={router} />  
+        
+      </DataFlowProvider>
       </div>
     )
   }
