@@ -56,7 +56,13 @@ const navbar = () => {
             </Link>
           </li>
           <li>
-            <LoginButton />
+          <Link
+              to={"/Login"}
+              className="hover:underline hover:font-bold hover:cursor-pointer "
+            >
+              <LoginButton />
+            </Link>
+            
           </li>
         </ul>
       </nav>

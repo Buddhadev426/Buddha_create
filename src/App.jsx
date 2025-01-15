@@ -12,6 +12,10 @@ import Services from './Main/Services'
 import DataFlowProvider from './Context/Dataflow'
 import Contact from './Main/Contact'
 import Weather from './Main/Weather'
+import Dashboard from './components/Dashboard'
+import PrivetRout from './Privet-roouts/PrivetRout'
+import Login from './components/auth/Login'
+import NavbarBlog from './Blogs/NavbarBlog'
 
 
 
@@ -31,6 +35,7 @@ const App = () => {
       <GeminiEffect />
       <Lamp />
       <ScrollingEffect />
+      
         
        </div>
       ),
@@ -80,6 +85,34 @@ const App = () => {
        </div>
       )
     },
+    {
+      path: '/Blog',
+      element: (
+       <div>
+        
+       <NavbarBlog/>  
+       </div>
+      )
+    },
+    
+    {
+      path: '/Login',
+      element: (
+       <div>
+        
+       <Login/>
+       </div>
+      )
+    },
+    {
+      path: '/Dashboard',
+      element: (
+       <PrivetRout>
+       <Dashboard/>
+       </PrivetRout>
+      )
+    },
+   
    
    
   ])
