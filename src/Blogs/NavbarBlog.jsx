@@ -7,7 +7,7 @@ import { div } from 'framer-motion/client';
 
 function NavbarBlog() {
   return (
-    <div className="bg-white text-gray-800">
+    <div className="bg-gray-50 text-gray-800">
       {/* Navbar */}
       <header className="flex justify-between items-center px-12 py-4 border-b">
         <div className="flex items-center space-x-20">
@@ -49,7 +49,7 @@ function NavbarBlog() {
           <input
             type="email"
             placeholder="Enter your E-mail to subscribe"
-            className="w-full px-4 py-4 pr-28 border-2 border-blue-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className=" bg-gray-50 w-full px-4 py-4 pr-28 border-2 border-blue-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             style={{ paddingRight: '4rem' }} // ensure input text is not under the button
           />
           <button

@@ -17,6 +17,8 @@ import PrivetRout from './Privet-roouts/PrivetRout'
 import Login from './components/auth/Login'
 import NavbarBlog from './Blogs/NavbarBlog'
 import FeaturedBlogPost from './Blogs/FeaturedBlogPost'
+import TrendingBlogPost from './Blogs/TrendingBlogPost'
+import Categories from './Blogs/Categories'
 
 
 
@@ -94,6 +96,8 @@ const App = () => {
         
        <NavbarBlog/>
        <FeaturedBlogPost/> 
+       <TrendingBlogPost/>
+       <Categories/>
        
        </div>
       )
