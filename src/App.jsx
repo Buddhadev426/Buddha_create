@@ -16,6 +16,8 @@ import Dashboard from './components/Dashboard'
 import PrivetRout from './Privet-roouts/PrivetRout'
 import Login from './components/auth/Login'
 import NavbarBlog from './Blogs/NavbarBlog'
+import FeaturedBlogPost from './Blogs/FeaturedBlogPost'
+
 
 
 
@@ -90,7 +92,9 @@ const App = () => {
       element: (
        <div>
         
-       <NavbarBlog/>  
+       <NavbarBlog/>
+       <FeaturedBlogPost/> 
+       
        </div>
       )
     },

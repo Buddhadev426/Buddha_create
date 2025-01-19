@@ -2,6 +2,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faPenToSquare } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon
+import { div } from 'framer-motion/client';
 
 
 function NavbarBlog() {
@@ -34,8 +35,35 @@ function NavbarBlog() {
           </div>
         </div>
       </header>
+
+      {/* Main Content */}
+      <main className="flex flex-col items-center justify-center text-center py-16">
+        <h1 className="text-2xl font-bold  mb-2">
+          🎉 Limited Offer 🎉
+        </h1>
+        <p className="text-gray-600 mb-6">
+          Subscribe today and get exclusive access to premium content!
+        </p>
+
+        <div className="relative w-full max-w-lg">
+          <input
+            type="email"
+            placeholder="Enter your E-mail to subscribe"
+            className="w-full px-4 py-4 pr-28 border-2 border-blue-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            style={{ paddingRight: '4rem' }} // ensure input text is not under the button
+          />
+          <button
+            className="absolute top-0 right-0 m-1 py-3 px-10 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition text-md"
+            
+          >
+            Subscribe
+          </button>
+        </div>
+
+        
+        
+      </main>
     </div>
   );
 }
-
 export default NavbarBlog;
