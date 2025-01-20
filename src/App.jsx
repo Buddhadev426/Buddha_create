@@ -19,6 +19,7 @@ import NavbarBlog from './Blogs/NavbarBlog'
 import FeaturedBlogPost from './Blogs/FeaturedBlogPost'
 import TrendingBlogPost from './Blogs/TrendingBlogPost'
 import Categories from './Blogs/Categories'
+import FooterBlog from './Blogs/FooterBlog'
 
 
 
@@ -98,6 +99,7 @@ const App = () => {
        <FeaturedBlogPost/> 
        <TrendingBlogPost/>
        <Categories/>
+       <FooterBlog/>  
        
        </div>
       )
