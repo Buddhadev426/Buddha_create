@@ -20,6 +20,7 @@ import FeaturedBlogPost from './Blogs/FeaturedBlogPost'
 import TrendingBlogPost from './Blogs/TrendingBlogPost'
 import Categories from './Blogs/Categories'
 import FooterBlog from './Blogs/FooterBlog'
+import Registration from './components/auth/Registration'
 
 
 
@@ -111,6 +112,15 @@ const App = () => {
        <div>
         
        <Login/>
+       </div>
+      )
+    },
+    {
+      path: '/Register',
+      element: (
+       <div>
+        
+       <Registration/>
        </div>
       )
     },
