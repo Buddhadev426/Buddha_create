@@ -15,7 +15,7 @@ app.use(cors({
 app.use(cookieParser());
 
 const users = [
-    { email: 'admin@admin.com', password: bcrypt.hashSync('admin', 10) }
+    { email: 'buddha@gmail.com', password: bcrypt.hashSync('buddha1234', 10) }
 ]; // Temporary in-memory user store with a static user
 
 

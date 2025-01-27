@@ -1,7 +1,44 @@
-import React from "react";
-
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { th } from 'framer-motion/client';
 
 function Registration() {
+
+  const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [ firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [toastError, setToastError] = useState(false);
+    const [ successRegister, setSuccessRegister] = useState(false);
+    const navigate = useNavigate();
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      try {
+        const res = await fetch('http://localhost:3000/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({ email, password }),
+        });
+  
+        if (res.ok === true) {
+          setSuccessRegister(true);
+        } else {
+          setToastError(true);
+          throw new Error('opps something went wrong');
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+
   return (
     <>
       {/*
@@ -29,7 +66,23 @@ function Registration() {
         
 
         <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-sm  justify-end">
-          <form action="#" method="POST" className="space-y-6" >
+          <form onSubmit={handleSubmit} className="space-y-6" >
+
+          {toastError === true ? (
+        <div className="bg-red-300 text-red-600 text-center px-4 py-1 rounded font-semibold">
+            Something went wrong
+        </div>) : ( 
+            "" 
+           )}
+
+          {successRegister === true ? (
+        <div className="bg-green-300 text-green-600 text-center px-4 py-1 rounded font-semibold">
+            Successfully registered
+        </div>) : ( 
+            "" 
+           )}
+
+
             <div className="flex gap-4 mt-2 ">
               <div>
                 <input
@@ -38,6 +91,7 @@ function Registration() {
                   id="first name"
                   placeholder="First Name"
                   className="block  rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
               <div>
@@ -47,6 +101,7 @@ function Registration() {
                   id="last name"
                   placeholder="Last Name"
                   className="block rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
             </div>
@@ -60,6 +115,7 @@ function Registration() {
                   autoComplete="email"
                   placeholder="Mobile number or email address"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -75,6 +131,7 @@ function Registration() {
                   autoComplete="current-password"
                   placeholder="New password"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="mt-6">
@@ -86,6 +143,7 @@ function Registration() {
                   autoComplete="current-password"
                   placeholder="Re-enter password"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="mt-3">

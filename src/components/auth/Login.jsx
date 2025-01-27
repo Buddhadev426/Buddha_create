@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { th } from 'framer-motion/client';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [toastError, setToastError] = useState(false);
+  const [successLogin, setSuccessLogin] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -22,14 +24,15 @@ function Login() {
         body: JSON.stringify({ email, password }),
       });
 
-      if (res.ok) {
+      if (res.ok === true) {
+        setSuccessLogin(true);
         navigate('/Blog');
       } else {
         setToastError(true);
-        setTimeout(() => setToastError(false), 3000); // Dismiss after 3 seconds
+        throw new Error('Invalid credentials');
       }
     } catch (error) {
-      console.error('Error logging in:', error.message);
+      console.log(error.message);
     }
   };
 
@@ -38,15 +41,24 @@ function Login() {
       className="h-screen flex justify-center items-center bg-no-repeat bg-center bg-cover"
       style={{ backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU_RQssmFSVw9CfnW3W3jo8zGBldfsYUBHKg&s')" }}
     >
-      <div className="w-[400px] h-[550px] bg-blue-950 flex flex-col p-6 rounded-lg shadow-lg">
+      <div className="w-[400px] h-[600px] bg-blue-950 flex flex-col p-6 rounded-lg shadow-lg">
         <h1 className="text-3xl text-white text-center font-bold">Welcome To Blogs</h1>
         <p className="text-white text-sm font-semibold text-center mt-4">Please login to access your account.</p>
         
-        {toastError && (
-          <div className="bg-red-200 text-red-600 text-center p-2 mt-4 rounded">
+           {toastError === true ? (
+        <div className="bg-red-300 text-red-600 text-center p-2 mt-4 rounded font-semibold">
             Invalid credentials
-          </div>
-        )}
+        </div>) : ( 
+            "" 
+           )}
+
+           {successLogin === true ? (
+        <div className="bg-green-300 text-green-600 text-center p-2 mt-4 rounded font-semibold">
+          Successfully logged in
+        </div>) : ( 
+          "" 
+         )}
+
 
         <form onSubmit={handleSubmit} className="mt-6">
           <div className="mb-4">
@@ -55,7 +67,8 @@ function Login() {
               type="email"
               id="email"
               name="email"
-              className="block w-full p-2 mt-1 rounded-full outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600"
+              placeholder='Enter your email'
+              className="block w-full p-2 pl-4 mt-1 rounded-full outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -66,7 +79,8 @@ function Login() {
               type="password"
               id="password"
               name="password"
-              className="block w-full p-2 mt-1 rounded-full outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600"
+              placeholder='Enter your Password'
+              className="block w-full p-2 pl-4 mt-1 rounded-full outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
