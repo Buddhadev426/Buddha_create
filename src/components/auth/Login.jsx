@@ -1,98 +1,97 @@
-
-import React from 'react'
-import { useState } from 'react'
-
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [toastError, setToastError] = useState(false);
+  const navigate = useNavigate();
 
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  const res = await fetch ("http://localhost:3000/login", 
-    {
-    method: "POST",
-   headers: {
-     "Content-Type": "application/json",
-   },
-    
-    body: JSON.stringify({email, password}),
-  })
-  // console.log(JSON.stringify({email, password}));
-  const data = await res.json();
-  console.log(data);
-};
+    try {
+      const res = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ email, password }),
+      });
 
-
+      if (res.ok) {
+        navigate('/Blog');
+      } else {
+        setToastError(true);
+        setTimeout(() => setToastError(false), 3000); // Dismiss after 3 seconds
+      }
+    } catch (error) {
+      console.error('Error logging in:', error.message);
+    }
+  };
 
   return (
-
-    <div className="h-screen flex justify-end items-center bg-no-repeat bg-center bg-cover pr-20" style={{ backgroundImage: "url('https://img.freepik.com/premium-vector/illustration-concept-blogging-with-pencil-holder-side-computer_129685-291.jpg')" }}>
-      <div className="w-[400px] h-[600px] bg-blue-950 flex-col  ">
-        <div><h1 className='text-2xl text-white pt-4 text-center'>Welcome To Blogs</h1></div>
-      <div className=' text-white  text-sm/6 font-semibold text-indigo-600 pt-8 text-center'>Please login to access your account.
+    <div
+      className="h-screen flex justify-center items-center bg-no-repeat bg-center bg-cover"
+      style={{ backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU_RQssmFSVw9CfnW3W3jo8zGBldfsYUBHKg&s')" }}
+    >
+      <div className="w-[400px] h-[550px] bg-blue-950 flex flex-col p-6 rounded-lg shadow-lg">
+        <h1 className="text-3xl text-white text-center font-bold">Welcome To Blogs</h1>
+        <p className="text-white text-sm font-semibold text-center mt-4">Please login to access your account.</p>
         
-      </div>
-    <form onSubmit={handleSubmit}>
-      <div className='pl-8 pt-8'><label htmlFor="" className="text-white ">User Name</label></div>
-        <div className='flex justify-center pt-1'>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            className=' p-3 w-[350px] h-[40px] rounded-full outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-     <div className='pl-8 pt-8'><label htmlFor="" className="text-white ">Password</label></div>
-       <div className='flex justify-center pt-1'>
-        <input 
-          type="password" 
-          id="password" 
-          name="password" 
-          className='p-3 w-[350px] h-[40px] rounded-full outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
-          onChange={(e) => setPassword(e.target.value)}
-        />
-    </div>
-        <div className='flex justify-center'>
-          <button className='bg-red-600 text-white w-[350px] h-[40px] rounded-full mt-8'>Login
-          </button>
-        </div>
-   </form>
-        <div className='flex justify-center justify-between pl-8 pr-8'>
-          <div className='flex pt-4 text-white  text-sm/6 font-semibold text-indigo-600 hover:text-indigo-500 underline'><link rel="stylesheet" href="" />Forgot Password</div>
-          <div className='flex pt-4 text-white  text-sm/6 font-semibold text-indigo-600 hover:text-indigo-500 underline'><link rel="stylesheet" href="" />Privacy Policy</div>
-        </div>
-        <div className=' text-white  text-sm/6 font-semibold text-indigo-600 pt-8 text-center'>
-          Don't have an account? <a href=" http://localhost:5173/Register" className='underline hover:text-indigo-500'>
-            Sign Up</a>
+        {toastError && (
+          <div className="bg-red-200 text-red-600 text-center p-2 mt-4 rounded">
+            Invalid credentials
           </div>
-        <div className=' text-white  text-sm/6 font-semibold text-indigo-600 pt-8 text-center'>Or sign in with an account.
+        )}
+
+        <form onSubmit={handleSubmit} className="mt-6">
+          <div className="mb-4">
+            <label htmlFor="email" className="text-white">User Name</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className="block w-full p-2 mt-1 rounded-full outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="password" className="text-white">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="block w-full p-2 mt-1 rounded-full outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <button className="bg-red-600 text-white w-full p-2 rounded-full mt-4 hover:bg-red-500">Login</button>
+        </form>
+
+        <div className="flex justify-between mt-4 text-white text-sm p-2">
+          <a href="#" className="hover:text-indigo-500 underline ">Forgot Password</a>
+          <a href="#" className="hover:text-indigo-500 underline">Privacy Policy</a>
         </div>
 
-        <div className="flex gap-4 justify-center pt-4">
-          <a href="https://www.google.com" target="_blank" rel="noopener noreferrer ">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Logo" className="h-12 w-12  " />
-          </a>
-          <a href="https://www.github.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" className="h-8 w-8 rounded-full" />
-          </a>
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook Logo" className="h-8 w-8" />
-          </a>
-          
-        <div>
-          
-        </div>
+        <p className="text-white text-sm text-center mt-6">
+          Don't have an account? <Link to="/Register" className="underline hover:text-indigo-500">Sign Up</Link>
+        </p>
+        
+        <p className="text-white text-sm text-center mt-6">Or sign in with an account.</p>
+        <div className="flex justify-center gap-6 mt-4">
+          <FontAwesomeIcon icon={faFacebook} className="text-white hover:text-blue-500 cursor-pointer text-3xl" />
+          <FontAwesomeIcon icon={faGithub} className="text-white hover:text-gray-500 cursor-pointer text-3xl" />
+          <FontAwesomeIcon icon={faGoogle} className="text-white hover:text-red-500 cursor-pointer text-3xl" />
         </div>
       </div>
-      
     </div>
-
-  )
+  );
 }
 
-
-export default Login
+export default Login;

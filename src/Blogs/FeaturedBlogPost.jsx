@@ -2,6 +2,8 @@
 import React from 'react'
 import femaleImage from '../assets/image.png'
 import clockImage from '../assets/image (1).png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 
 
@@ -10,6 +12,7 @@ function FeaturedBlogPost() {
     return (
         <div className="bg-gray-50 min-h-screen pl-20 pr-20">
           {/* Page Title */}
+          
           <div className="container mx-auto ">
             <div className='flex justify-between'>
             <h2 className="text-3xl font-bold text-gray-800 mb-8">Featured Blog Posts</h2>
@@ -60,9 +63,9 @@ function FeaturedBlogPost() {
                     <img
                       src={clockImage}
                       alt="Blog Thumbnail"
-                      className="w-30 h-24 rounded-lg mr-4"
+                      className="w-30 h-24 rounded-lg mr-4 bg-gray-50"
                     />
-                    <div>
+                    <div className='bg-gray-50'>
                       <div className="flex items-center mb-1">
                         <p className='text-xs'>Soubhik Mridha | December 12, 2024</p>
                         
@@ -78,6 +81,7 @@ function FeaturedBlogPost() {
                     </div>
                     
                   </div>
+                  
                   <div
                    
                     className="flex items-center bg-white rounded-lg w-full mb-10 bg-gray-50"
@@ -85,10 +89,10 @@ function FeaturedBlogPost() {
                     <img
                       src={clockImage}
                       alt="Blog Thumbnail"
-                      className="w-30 h-24 rounded-lg mr-4"
+                      className="w-30 h-24 rounded-lg mr-4 bg-gray-50"
                     />
-                    <div>
-                      <div className="flex items-center mb-1">
+                    <div className='bg-gray-50'>
+                      <div className="flex items-center mb-1 bg-gray-50">
                         <p className='text-xs'>Soubhik Mridha | December 12, 2024</p>
                         
                       </div>
@@ -109,9 +113,9 @@ function FeaturedBlogPost() {
                    <img
                      src={clockImage}
                      alt="Blog Thumbnail"
-                     className="w-30 h-24 rounded-lg mr-4"
+                     className="w-30 h-24 rounded-lg mr-4 bg-gray-50"
                    />
-                   <div>
+                   <div className='bg-gray-50'>
                      <div className="flex items-center mb-1">
                        <p className='text-xs'>Soubhik Mridha | December 12, 2024</p>
                        
@@ -126,16 +130,16 @@ function FeaturedBlogPost() {
                    </div>
                    
                  </div>
-                 <div
+                <div
                    
                    className="flex items-center bg-white rounded-lg w-full mb-10 bg-gray-50"
                  >
                    <img
                      src={clockImage}
                      alt="Blog Thumbnail"
-                     className="w-30 h-24 rounded-lg mr-4"
+                     className="w-30 h-24 rounded-lg mr-4 bg-gray-100"
                    />
-                   <div>
+                   <div className='bg-gray-50'>
                      <div className="flex items-center mb-1">
                        <p className='text-xs'>Soubhik Mridha | December 12, 2024</p>
                        
@@ -146,14 +150,18 @@ function FeaturedBlogPost() {
                      <p className="text-gray-600 text-xs">
                      In today’s fast-paced world, staying ahead means constantly learning and adapting.In today's fast-paces world, staying ahead means constantly learning and adapting.
                      </p>
+                    
                      
                    </div>
                    
+                   
                  </div>
-                
+                 
+                 
               </div>
             </div>
           </div>
+          
         </div>
       );
     }

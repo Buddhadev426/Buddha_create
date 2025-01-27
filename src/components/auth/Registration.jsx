@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function Registration() {
   return (
     <>
@@ -11,23 +12,24 @@ function Registration() {
              <body class="h-full">
              ```
            */}
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="flex h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-no-repeat bg-center bg-cover "
+      style={{ backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTckJSaoulRuL2sqQ1KVHm8XWIpX7GgOdFgHw&s')" }}>
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
           <img
             alt="Your Company"
             src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-            className="mx-auto h-10 w-auto"
+            className="mx-auto h-10 w-auto "
           />
-          <h2 className="mt-10 text-center text-4xl font-bold tracking-tight text-gray-900">
+          <h2 className="mt-6 text-center text-4xl font-bold tracking-tight text-purple-600">
             Creante an account
           </h2>
-          <h6 className="text-center text-center text-sm/6 text-gray-500 font-semibold">
+          <h6 className="text-center text-center text-sm/6 text-gray-300 font-semibold">
             It's free and always will be.
           </h6>
-        </div>
+        
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+        <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-sm  justify-end">
+          <form action="#" method="POST" className="space-y-6" >
             <div className="flex gap-4 mt-2 ">
               <div>
                 <input
@@ -49,7 +51,7 @@ function Registration() {
               </div>
             </div>
             <div>
-              <div className="mt-2">
+              <div className="">
                 <input
                   id="email"
                   name="email"
@@ -86,12 +88,12 @@ function Registration() {
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
-              <div className="mt-4">
+              <div className="mt-3">
                 <label
                   htmlFor=" "
                   id="birthdate"
                   name="birthdate"
-                  className="text-md font-bold text-base text-gray-900 "
+                  className="text-md font-bold text-base text-gray-300 "
                 >
                   Birthday :
                 </label>
@@ -99,8 +101,8 @@ function Registration() {
               <div className="text-base text-gray-900 ">
                 <input type="date" name="date" id="date" />
               </div>
-              <div className="mt-3 font-bold text-base text-gray-900 flex gap-4">
-                <div>
+              <div className="mt-2 font-bold text-base text-gray-900 flex gap-4">
+                <div className="text-gray-300">
                   <input
                     type="radio"
                     name="female"
@@ -109,22 +111,22 @@ function Registration() {
                   />
                   Female
                 </div>
-                <div>
+                <div className="text-gray-300">
                   <input type="radio" name="male" id="male" className="mr-2" />
                   Male
                 </div>
               </div>
-              <div className="mt-4">
+              <div className="mt-3 text-gray-300 font-semibold">
                 <input
                   type="checkbox"
                   name="checkbox"
                   id="checkbox"
-                  className="mr-2 text-sm/2 font-semibold"
+                  className="mr-2 text-sm/2 font-bold "
                 />
                 I accept the{" "}
                 <a
                   href="#"
-                  className="font-semibold text-sm text-indigo-600 hover:text-indigo-500 hover:underline"
+                  className="font-semibold text-sm text-indigo-400 hover:text-indigo-00 hover:underline"
                 >
                   Terms and Conditions
                 </a>
@@ -141,15 +143,16 @@ function Registration() {
             </div>
           </form>
 
-          <p className="mt-3 text-center text-sm/6 text-gray-500">
+          <p className="mt-2 text-center text-sm/6 text-gray-300">
             Already you have an account?
             <a
               href="http://localhost:5173/Login"
-              className="font-semibold text-indigo-600 hover:text-indigo-500 pl-2 hover:underline"
+              className="font-semibold text-indigo-400 hover:text-indigo-400 pl-2 hover:underline"
             >
               Login here
             </a>
           </p>
+        </div>
         </div>
       </div>
     </>

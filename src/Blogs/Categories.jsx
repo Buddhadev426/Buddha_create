@@ -90,7 +90,7 @@ function Categories() {
                   
         </div>
       </section>
-      <div className="ml-10 mr-10 mx-auto w-90 border-t border-blue-300 mt-10 mb-10"></div>
+      <div className="ml-10 mr-10 mx-auto w-90 border-t border-blue-300 mt-12 mb-10"></div>
     </div>
   );
 }
