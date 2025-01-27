@@ -3,19 +3,23 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { th } from 'framer-motion/client';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [toastError, setToastError] = useState(false);
   const [successLogin, setSuccessLogin] = useState(false);
+  const [ showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:3000/login', {
+      const res = await fetch('http://localhost:3000/login', {   
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,8 +65,10 @@ function Login() {
 
 
         <form onSubmit={handleSubmit} className="mt-6">
-          <div className="mb-4">
+          <div>
             <label htmlFor="email" className="text-white">User Name</label>
+          </div>
+          <div className="mb-4">           
             <input
               type="email"
               id="email"
@@ -72,17 +78,24 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-
-          <div className="mb-4">
-            <label htmlFor="password" className="text-white">Password</label>
+          <div>
+             <label htmlFor="password" className="text-white">Password</label>
+          </div>
+          <div className="mb-4 relative">            
             <input
-              type="password"
+              type={showPassword === true ? "text" : "password"}
               id="password"
               name="password"
               placeholder='Enter your Password'
               className="block w-full p-2 pl-4 mt-1 rounded-full outline-gray-300 placeholder:text-gray-400 focus:outline-indigo-600"
               onChange={(e) => setPassword(e.target.value)}
             />
+            {
+             showPassword === true ? (
+               <FaEye className='absolute right-3 top-3' onClick={() => setShowPassword(false)}/>
+                  ) : (
+              <FaEyeSlash className='absolute right-3 top-3' onClick={() => setShowPassword(true )} />
+                )}
           </div>
 
           <button className="bg-red-600 text-white w-full p-2 rounded-full mt-4 hover:bg-red-500">Login</button>

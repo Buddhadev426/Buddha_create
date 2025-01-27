@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { th } from 'framer-motion/client';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+import { link } from 'framer-motion/client';
 
 function Registration() {
 
@@ -12,7 +11,7 @@ function Registration() {
     const [lastName, setLastName] = useState('');
     const [toastError, setToastError] = useState(false);
     const [ successRegister, setSuccessRegister] = useState(false);
-    const navigate = useNavigate();
+    const [ showPassword, setShowPassword] = useState(false);
   
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -133,31 +132,43 @@ function Registration() {
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 onChange={(e) => setPassword(e.target.value)}
                 />
+                
               </div>
-              <div className="mt-6">
+              <div className="mt-6 relative">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword === true ? "text" : "password"}
                   required
                   autoComplete="current-password"
                   placeholder="Re-enter password"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 onChange={(e) => setPassword(e.target.value)}
                 />
+                {
+                  showPassword === true ? (
+                  <FaEye className='absolute right-3 top-2.5' onClick={() => setShowPassword(false)}/>
+                  ) : (
+                  <FaEyeSlash className='absolute right-3 top-2.5' onClick={() => setShowPassword(true )} />
+                )}
+                
               </div>
               <div className="mt-3">
                 <label
                   htmlFor=" "
                   id="birthdate"
                   name="birthdate"
-                  className="text-md font-bold text-base text-gray-300 "
+                  className="text-md font-bold text-base text-gray-300  "
                 >
                   Birthday :
                 </label>
               </div>
               <div className="text-base text-gray-900 ">
-                <input type="date" name="date" id="date" />
+                <input type="date" name="date" id="date" 
+                className='pl-3 py-1.5 w-full rounded-md outline outline-1 -outline-offset-1 outline-gray-300 
+                placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 
+                sm:text-sm/6 pr-2'
+                />
               </div>
               <div className="mt-2 font-bold text-base text-gray-900 flex gap-4">
                 <div className="text-gray-300">
