@@ -22,8 +22,10 @@ function NavbarBlog() {
         
         <div className="flex items-center space-x-4">
         <div><FontAwesomeIcon icon={faPenToSquare} className="text-blue-800 text-sm"/></div>
-          <a href="#" className="text-black underline font-medium">Write Blogs</a>
-          <div>
+          <button  className="text-black underline font-medium">
+            Write Blog
+            </button>
+        <div>
             <FontAwesomeIcon icon={faBell} className="text-blue-800 text-lg" /> {/* Use the imported icon */}
           </div>
           <div className="w-8 h-8 bg-gray-300 rounded-full overflow-hidden">
