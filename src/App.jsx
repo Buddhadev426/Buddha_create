@@ -21,6 +21,7 @@ import TrendingBlogPost from './Blogs/TrendingBlogPost'
 import Categories from './Blogs/Categories'
 import FooterBlog from './Blogs/FooterBlog'
 import Registration from './components/auth/Registration'
+import BlogsNew from './Main/BlogsNew'
 
 
 
@@ -132,7 +133,12 @@ const App = () => {
        </PrivetRout>
       )
     },
-   
+    {
+      path: '/BlogsNew',
+      element: (
+       <BlogsNew/>
+      )
+    },
    
    
   ])
