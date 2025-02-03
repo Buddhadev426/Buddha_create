@@ -7,6 +7,7 @@ function Registration() {
 
   const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [ firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [toastError, setToastError] = useState(false);
@@ -23,7 +24,8 @@ function Registration() {
             'Content-Type': 'application/json',
           },
           credentials: 'include',
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify({ email,
+            firstName, lastName, password }),
         });
   
         if (res.ok === true) {
@@ -143,7 +145,7 @@ function Registration() {
                   autoComplete="current-password"
                   placeholder="Re-enter password"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 {
                   showPassword === true ? (
@@ -206,6 +208,7 @@ function Registration() {
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-md/6 font-bold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+              
               >
                 Sign up
               </button>

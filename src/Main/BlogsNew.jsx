@@ -19,7 +19,7 @@ function BlogsNew() {
     const getAllBlogs = async () => { 
       
       try {
-        const res = await fetch('http://localhost:3000/blogs', {
+        const res = await fetch('http://localhost:3000/blogs/create', {
           credentials: 'include'
         });
         const data = await res.json();
