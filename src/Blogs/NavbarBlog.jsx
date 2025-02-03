@@ -3,9 +3,12 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faPenToSquare } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon
 import { div } from 'framer-motion/client';
+import { useState } from 'react';
+import { BlogsModal } from '../Main/BlogsNew-componenets/BlogsModal';
 
 
 function NavbarBlog() {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div className="bg-gray-50 text-gray-800">
       {/* Navbar */}
@@ -22,7 +25,8 @@ function NavbarBlog() {
         
         <div className="flex items-center space-x-4">
         <div><FontAwesomeIcon icon={faPenToSquare} className="text-blue-800 text-sm"/></div>
-          <button  className="text-black underline font-medium">
+          <button  className="text-black underline font-medium" 
+            onClick={() => setOpenModal(true)}>
             Write Blog
             </button>
         <div>
@@ -37,6 +41,8 @@ function NavbarBlog() {
           </div>
         </div>
       </header>
+
+      <BlogsModal openModal={openModal} setOpenModal={setOpenModal}/> 
 
       {/* Main Content */}
       <main className="flex flex-col items-center justify-center text-center py-16">

@@ -1,35 +1,115 @@
+import React from 'react'
+import { useState } from 'react'
 
-import { Button, Modal } from "flowbite-react";
-import { useState } from "react";
+  export function BlogsModal({openModal, setOpenModal}) {
 
-export function BlogsModal({openModal, setOpenModal}) {
+    const [category, setCategory] = useState('');
+    const [coverImage, setCoverImage] = useState(null);
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+
+
+    const handleBlogSubmit = async () => {
+
+      try {
+
+        if (!category || !coverImage || !title || !content) {
+          return alert('Please fill in all fields');
+           
+         }
+         const newBlog = {
+           category : category,
+           coverImage : coverImage,
+           title : title,
+           content : content
+         }
+         const res = await fetch('http://localhost:3000/blogs/create', {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json',
+           },
+           credentials: 'include',
+           body: JSON.stringify({ newBlog }),
+         });
+           const data = await res.json();
+           console.log(data);
+        } catch (error) {
+          console.log("can't create blog");
+        }
+        
+      
+    }
   
 
   return (
-    <>
-     
-      <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
-        <Modal.Header>Terms of Service</Modal.Header>
-        <Modal.Body>
-          <div className="space-y-6">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              With less than a month to go before the European Union enacts new consumer privacy laws for its citizens,
-              companies around the world are updating their terms of service agreements to comply.
-            </p>
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant
-              to ensure a common set of data rights in the European Union. It requires organizations to notify users as
-              soon as possible of high-risk data breaches that could personally affect them.
-            </p>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      {/* Open Modal Button */}
+      {/* <button
+        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+        onClick={() => setOpenModal(true)}
+      >
+        Open Modal
+      </button> */}
+
+      {/* Modal Overlay */}
+      {openModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50  flex justify-center items-center z-50">
+          {/* Modal Content */}
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-bold mb-4">Create a Blog Post</h2>
+
+            <label className="block text-sm font-medium text-gray-700">
+              Category
+            </label>
+            <input
+              type="text"
+              className="w-full p-2 border rounded-md mb-3"
+              placeholder='Enter Category'
+              onChange={(e) => setCategory(e.target.value)}
+            />
+
+            <label className="block text-sm font-medium text-gray-700">
+              Cover Image
+            </label>
+            <input type="file" className="w-full p-2 border rounded-md mb-3" 
+            onChange={(e) => setCoverImage(e.target.files[0])}/>
+
+            <label className="block text-sm font-medium text-gray-700">
+              Title
+            </label>
+            <input
+              type="text"
+              className="w-full p-2 border rounded-md mb-3"
+              placeholder='Enter Title'
+              onChange={(e) => setTitle(e.target.value)}
+            />
+
+            <label className="block text-sm font-medium text-gray-700">
+              Content
+            </label>
+            <textarea className="w-full p-2 border rounded-md mb-3" 
+            placeholder='Enter Content'
+            onChange={(e) => setContent(e.target.value)}
+            />
+
+            {/* Buttons */}
+            <div className="flex justify-end space-x-3">
+            <button className="px-4 py-2 bg-green-500 text-white rounded-lg"
+            onClick={() => handleBlogSubmit()}>
+                Submit
+              </button>
+              <button
+                className="px-4 py-2 bg-gray-300 rounded-lg"
+                onClick={() => setOpenModal(false)}
+              >
+                Cancel
+              </button>
+              
+            </div>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setOpenModal(false)}>I accept</Button>
-          <Button color="gray" onClick={() => setOpenModal(false)}>
-            Decline
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+        </div>
+      )}
+    </div>
   );
 }
+
